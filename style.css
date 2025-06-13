@@ -1,4 +1,4 @@
-/* 전체 초기화 */
+/* 기본 초기화 */
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +7,8 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #ffffff;
-  color: #111111;
+  background: #fff;
+  color: #111;
   line-height: 1.6;
 }
 
@@ -18,11 +18,10 @@ body {
   padding: 60px 20px;
 }
 
-/* 헤더 스타일 */
+/* 헤더 */
 header {
-  background: #ffffff;
+  background: #fff;
   border-bottom: 1px solid #ddd;
-  padding: 20px 0;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -32,6 +31,7 @@ header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px 0;
 }
 
 header h1 {
@@ -41,13 +41,13 @@ header h1 {
 
 nav ul {
   display: flex;
-  list-style: none;
   gap: 20px;
+  list-style: none;
 }
 
 nav a {
   text-decoration: none;
-  color: #111111;
+  color: #111;
   font-weight: 500;
   transition: color 0.3s;
 }
@@ -56,13 +56,37 @@ nav a:hover {
   color: #888;
 }
 
-/* 섹션 스타일 */
+/* 섹션 제목 */
 section h2 {
   font-size: 28px;
   margin-bottom: 20px;
 }
 
-#portfolio .grid {
+/* 탭 버튼 */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 10px 16px;
+  background: #f1f1f1;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* 그리드 & 카드 */
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
@@ -77,7 +101,7 @@ section h2 {
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .card img,
@@ -87,17 +111,30 @@ section h2 {
   display: block;
 }
 
-/* 연락하기 */
+/* 연락 섹션 */
 #contact p {
   margin-top: 10px;
-  font-size: 16px;
 }
 
 /* 푸터 */
 footer {
   text-align: center;
   padding: 30px 0;
-  font-size: 14px;
   border-top: 1px solid #eee;
+  font-size: 14px;
   color: #666;
 }
+
+/* 헤더 로고 링크 스타일 */
+.site-logo {
+  text-decoration: none;
+  color: #111;
+  font-size: 24px;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.site-logo:hover {
+  color: #888;
+}
+
