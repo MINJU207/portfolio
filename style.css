@@ -1,0 +1,103 @@
+/* 전체 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  color: #111111;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+/* 헤더 스타일 */
+header {
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #111111;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #888;
+}
+
+/* 섹션 스타일 */
+section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+#portfolio .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #f8f8f8;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card img,
+.card video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 연락하기 */
+#contact p {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/* 푸터 */
+footer {
+  text-align: center;
+  padding: 30px 0;
+  font-size: 14px;
+  border-top: 1px solid #eee;
+  color: #666;
+}
