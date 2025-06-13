@@ -8,73 +8,38 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-<header>
-  <div class="container">
-    <h1>
-      <a href="index.html" class="site-logo">My Portfolio</a>
-    </h1>
-    <nav>
-      <ul>
-        <li><a href="about.html">소개</a></li>
-        <li><a href="portfolio.html">포트폴리오</a></li>
-        <li><a href="index.html#contact">연락</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-  <!-- 포트폴리오 섹션 (기존과 동일) -->
-  <section id="portfolio">
+  <header>
     <div class="container">
-      <h2>포트폴리오</h2>
-      <div class="tabs">
-        <button class="tab-btn active" data-category="all">전체</button>
-        <button class="tab-btn" data-category="image">이미지</button>
-        <button class="tab-btn" data-category="video">영상</button>
-      </div>
-      <div class="grid">
-        <div class="card" data-category="image">
-          <img src="image1.jpg" alt="이미지 작업 1" />
-        </div>
-        <div class="card" data-category="image">
-          <img src="image2.jpg" alt="이미지 작업 2" />
-        </div>
-        <div class="card" data-category="video">
-          <video controls>
-            <source src="video1.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
+      <h1><a href="index.html" class="site-logo">My Portfolio</a></h1>
+      <nav>
+        <ul>
+          <li><a href="about.html">소개</a></li>
+          <li><a href="portfolio.html">포트폴리오</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="container" style="text-align:center; padding: 80px 20px;">
+      <h2 class="hero-title">당신의 이야기를 영상과 이미지로 담아냅니다</h2>
+      <p class="hero-subtitle">안녕하세요! 저는 미디어콘텐츠 전공자로, 창의적인 시각 스토리텔링을 통해 사람들에게 감동을 전하는 작업을 해왔습니다.</p>
     </div>
   </section>
 
-  <section id="contact">
-    <div class="container">
-      <h2>연락하기</h2>
-      <p>이메일: example@example.com<br>Instagram: @yourinsta</p>
+  <!-- 간단 연락처 정보 -->
+  <section id="contact-info">
+    <div class="container" style="text-align:center; padding: 40px 20px;">
+      <p>📧 example@example.com  |  📸 @yourinsta</p>
     </div>
   </section>
 
   <footer>
-    <div class="container">
+    <div class="container" style="text-align:center; padding: 20px 0; font-size:14px; color:#666;">
       &copy; 2025 My Portfolio
     </div>
   </footer>
-
-  <script>
-    const buttons = document.querySelectorAll(".tab-btn");
-    const cards   = document.querySelectorAll(".card");
-
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const category = btn.dataset.category;
-        buttons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        cards.forEach(card => {
-          card.style.display = (category === "all" || card.dataset.category === category)
-                               ? "block" : "none";
-        });
-      });
-    });
-  </script>
 </body>
 </html>
+

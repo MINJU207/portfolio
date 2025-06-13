@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>포트폴리오</title>
+  <title>포트폴리오 | My Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
     <div class="container">
-      <h1>My Portfolio</h1>
+      <h1><a href="index.html" class="site-logo">My Portfolio</a></h1>
       <nav>
         <ul>
-          <li><a href="index.html#about">소개</a></li>
-          <li><a href="portfolio.html">포트폴리오</a></li>
-          <li><a href="index.html#contact">연락</a></li>
+          <li><a href="about.html">소개</a></li>
+          <li><a href="portfolio.html" class="active">포트폴리오</a></li>
         </ul>
       </nav>
     </div>
@@ -24,15 +23,11 @@
   <section id="portfolio">
     <div class="container">
       <h2>포트폴리오</h2>
-
-      <!-- 탭 버튼 -->
       <div class="tabs">
         <button class="tab-btn active" data-category="all">전체</button>
         <button class="tab-btn" data-category="image">이미지</button>
         <button class="tab-btn" data-category="video">영상</button>
       </div>
-
-      <!-- 포트폴리오 그리드 -->
       <div class="grid">
         <div class="card" data-category="image">
           <img src="image1.jpg" alt="이미지 작업 1" />
@@ -45,14 +40,13 @@
             <source src="video1.mp4" type="video/mp4" />
           </video>
         </div>
-        <!-- 더 많은 카드 추가 -->
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="container">
-      <a href="index.html" class="back-btn">← 홈으로 돌아가기</a>
+    <div class="container" style="text-align:center; padding: 20px 0; font-size:14px; color:#666;">
+      &copy; 2025 My Portfolio
     </div>
   </footer>
 
@@ -62,11 +56,11 @@
 
     buttons.forEach(btn => {
       btn.addEventListener("click", () => {
-        const cat = btn.dataset.category;
+        const category = btn.dataset.category;
         buttons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
         cards.forEach(card => {
-          card.style.display = (cat === "all" || card.dataset.category === cat)
+          card.style.display = (category === "all" || card.dataset.category === category)
                                ? "block" : "none";
         });
       });
