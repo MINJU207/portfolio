@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -6,6 +5,63 @@
   <title>포트폴리오 | My Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    .card {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border-radius: 12px;
+      position: relative;
+      cursor: pointer;
+    }
+    .card img,
+    .card video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Modal Styles */
+    #modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    #modal .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-sizing: border-box;
+    }
+    #modal .modal-content img,
+    #modal .modal-content video {
+      max-width: 100%;
+      max-height: 70vh;
+      display: block;
+      margin: 10px auto;
+    }
+    #modal .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -23,24 +79,45 @@
   <section id="portfolio">
     <div class="container">
       <h2>포트폴리오</h2>
+
+      <!-- 학년별 탭 버튼 -->
       <div class="tabs">
-        <button class="tab-btn active" data-category="all">전체</button>
-        <button class="tab-btn" data-category="image">이미지</button>
-        <button class="tab-btn" data-category="video">영상</button>
+        <button class="tab-btn active" data-year="all">전체</button>
+        <button class="tab-btn" data-year="year1">1학년</button>
+        <button class="tab-btn" data-year="year2">2학년</button>
+        <button class="tab-btn" data-year="year3">3학년</button>
+        <button class="tab-btn" data-year="year4">4학년</button>
       </div>
+
+      <!-- 포트폴리오 그리드 -->
       <div class="grid">
-        <div class="card" data-category="image">
-          <img src="image1.jpg" alt="이미지 작업 1" />
+        <!-- 2학년 작품 -->
+        <div class="card" data-year="year2" data-title="2학년 프로젝트 이미지 1" data-desc="2학년 이미지 작업 설명입니다.">
+          <img src="2-1.jpg" alt="2학년 이미지 1" />
         </div>
-        <div class="card" data-category="image">
-          <img src="image2.jpg" alt="이미지 작업 2" />
+        <div class="card" data-year="year2" data-title="2학년 프로젝트 이미지 2" data-desc="2학년 두 번째 이미지 작업 설명입니다.">
+          <img src="2-2.jpg" alt="2학년 이미지 2" />
         </div>
-        <div class="card" data-category="video">
-          <video controls>
-            <source src="video1.mp4" type="video/mp4" />
+        <div class="card" data-year="year2" data-title="2학년 프로젝트 영상" data-desc="2학년 동영상 작업 설명입니다.">
+          <video>
+            <source src="2-3.mp4" type="video/mp4" />
           </video>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+
+  <section id="contact-info">
+    <div class="container" style="text-align:center; padding: 40px 20px;">
+      <p>📧 example@example.com  |  📸 @yourinsta</p>
     </div>
   </section>
 
@@ -51,20 +128,36 @@
   </footer>
 
   <script>
-    const buttons = document.querySelectorAll(".tab-btn");
-    const cards   = document.querySelectorAll(".card");
-
+    // 탭 필터
+    const buttons = document.querySelectorAll('.tab-btn');
+    const cards   = document.querySelectorAll('.card');
     buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const category = btn.dataset.category;
-        buttons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
+      btn.addEventListener('click', () => {
+        const year = btn.dataset.year;
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
         cards.forEach(card => {
-          card.style.display = (category === "all" || card.dataset.category === category)
-                               ? "block" : "none";
+          card.style.display = (year === 'all' || card.dataset.year === year) ? 'block' : 'none';
         });
       });
     });
+    // 모달 동작
+    const modal = document.getElementById('modal');
+    const modalBody = modal.querySelector('.modal-body');
+    const closeBtn = modal.querySelector('.modal-close');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const title = card.dataset.title;
+        const desc  = card.dataset.desc;
+        const media = card.querySelector('img, video').cloneNode(true);
+        media.removeAttribute('controls'); // 영상이 재생되지 않도록 제거
+        modalBody.innerHTML = `<h3>${title}</h3><p>${desc}</p>`;
+        modalBody.appendChild(media);
+        modal.style.display = 'flex';
+      });
+    });
+    closeBtn.addEventListener('click', () => modal.style.display = 'none');
+    modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
   </script>
 </body>
 </html>
