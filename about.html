@@ -6,6 +6,77 @@
   <title>소개 | My Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* -- about-cute 섹션 기본 설정 -- */
+    .about-cute {
+      background: #FFF8F5;
+      padding: 60px 20px;
+      font-family: 'Inter', sans-serif;
+    }
+    .about-cute h2 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .about-cute .highlight {
+      color: #FF7F50;
+      font-weight: 700;
+    }
+    .about-cute .intro {
+      text-align: center;
+      color: #555;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    /* -- 카드 레이아웃 -- */
+    .about-cute .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .about-cute .card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 24px;
+      text-align: center;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .about-cute .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    /* -- 카드 아이콘 -- */
+    .about-cute .card .icon {
+      font-size: 2.5rem;
+      background: #FFEBE8;
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+    }
+
+    /* -- 카드 제목/내용 -- */
+    .about-cute .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    .about-cute .card p,
+    .about-cute .card ul {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      padding: 0;
+      list-style: none;
+    }
+    .about-cute .card ul li {
+      margin: 6px 0;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -20,20 +91,47 @@
     </div>
   </header>
 
-  <section id="about">
+  <!-- about-cute 섹션 -->
+  <section id="about" class="about-cute">
     <div class="container">
-      <h2>👋 안녕하세요!</h2>
-      <p>저는 <span style="font-weight:bold; color:#508aff;">정민주</span>라고 합니다. 🎓 미디어콘텐츠를 전공하며 영상 편집과 사진 촬영을 즐기는 크리에이터예요.</p>
-      <p>강의 프로젝트, 개인 작업 등 다양한 경험을 통해 크리에이티브 역량을 키워왔습니다.</p>
+      <h2>👋 안녕하세요, 저는 <span class="highlight">정민주</span>입니다!</h2>
+      <p class="intro">
+        🎓 미디어콘텐츠 전공자로<br>
+        영상 편집과 사진 촬영을 사랑하는 크리에이터예요.
+      </p>
 
-      <br>
-      <h3>📝 활동 내역</h3>
-      <br>
-      <ul class="activities">
-        <li>🎬 <strong>공삼사이</strong> (미디어콘텐츠학과 영상 동아리)</li>
-        <li>📰 <strong>MCC</strong> (경성대학교 학내 언론사)</li>
-        <li>🎓 <strong>대학혁신학생기획홍보단</strong></li>
-      </ul>
+      <div class="cards">
+        <div class="card">
+          <div class="icon">💡</div>
+          <h3>나의 철학</h3>
+          <p>“작은 디테일까지 놓치지 않고, 이야기가 살아 숨 쉬는 작업”</p>
+        </div>
+        <div class="card">
+          <div class="icon">🛠️</div>
+          <h3>주요 스킬</h3>
+          <ul>
+            <li>Premiere Pro & After Effects</li>
+            <li>Photoshop & Lightroom</li>
+            <li>HTML · CSS · JavaScript</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="icon">📝</div>
+          <h3>활동 내역</h3>
+          <ul>
+            <li>🎬 공삼사이 (미디어콘텐츠학과 영상 동아리)</li>
+            <li>📰 MCC (경성대학교 학내 언론사)</li>
+            <li>🎓 대학혁신학생기획홍보단</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 간단 연락처 정보 -->
+  <section id="contact-info">
+    <div class="container" style="text-align:center; padding: 40px 20px;">
+      <p>📧 jmj040308@gmail.com  |  📸 @mzoo</p>
     </div>
   </section>
 

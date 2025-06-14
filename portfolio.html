@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -6,6 +7,34 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 8px 16px;
+      background: #f1f1f1;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s, color 0.3s;
+    }
+    .tab-btn.active,
+    .tab-btn:hover {
+      background: #111;
+      color: #fff;
+    }
+    /* Grid Layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    /* Card */
     .card {
       aspect-ratio: 16/9;
       overflow: hidden;
@@ -14,11 +43,13 @@
       cursor: pointer;
     }
     .card img,
-    .card video {
+    .card video,
+    .card iframe {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      pointer-events: none;
     }
     /* Modal Styles */
     #modal {
@@ -47,7 +78,8 @@
       box-sizing: border-box;
     }
     #modal .modal-content img,
-    #modal .modal-content video {
+    #modal .modal-content video,
+    #modal .modal-content iframe {
       max-width: 100%;
       max-height: 70vh;
       display: block;
@@ -79,8 +111,6 @@
   <section id="portfolio">
     <div class="container">
       <h2>포트폴리오</h2>
-
-      <!-- 학년별 탭 버튼 -->
       <div class="tabs">
         <button class="tab-btn active" data-year="all">전체</button>
         <button class="tab-btn" data-year="year1">1학년</button>
@@ -88,9 +118,13 @@
         <button class="tab-btn" data-year="year3">3학년</button>
         <button class="tab-btn" data-year="year4">4학년</button>
       </div>
-
-      <!-- 포트폴리오 그리드 -->
       <div class="grid">
+        <!-- 1학년 작품 -->
+        <div class="card" data-year="year1" data-title="1학년 프로젝트 영상 1" data-desc="1학년 m3 영상입니다.">
+          <video muted autoplay loop playsinline>
+            <source src="m3.mp4" type="video/mp4">
+          </video>
+        </div>
         <!-- 2학년 작품 -->
         <div class="card" data-year="year2" data-title="2학년 프로젝트 이미지 1" data-desc="2학년 이미지 작업 설명입니다.">
           <img src="2-1.jpg" alt="2학년 이미지 1" />
@@ -98,11 +132,39 @@
         <div class="card" data-year="year2" data-title="2학년 프로젝트 이미지 2" data-desc="2학년 두 번째 이미지 작업 설명입니다.">
           <img src="2-2.jpg" alt="2학년 이미지 2" />
         </div>
-        <div class="card" data-year="year2" data-title="2학년 프로젝트 영상" data-desc="2학년 동영상 작업 설명입니다.">
-          <video>
+        <div class="card" data-year="year2" data-title="2학년 프로젝트 영상 3" data-desc="2학년 동영상 작업 설명입니다.">
+          <video muted autoplay loop playsinline>
             <source src="2-3.mp4" type="video/mp4" />
           </video>
         </div>
+        <div class="card" data-year="year2" data-title="2학년 프로젝트 영상 4" data-desc="2학년 네 번째 영상 설명입니다.">
+          <video muted autoplay loop playsinline>
+            <source src="2-4.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="card" data-year="year2" data-title="2학년 프로젝트 영상 5" data-desc="2학년 다섯 번째 영상 설명입니다.">
+          <video muted autoplay loop playsinline>
+            <source src="2-5.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="card" data-year="year2" data-title="2학년 프로젝트 영상 6" data-desc="2학년 여섯 번째 영상 설명입니다.">
+          <img src="2-7.png" alt="2학년 이미지 7" />
+        </div>
+        <div class="card" data-year="year2" data-title="2학년 프로젝트 이미지 7" data-desc="2학년 일곱 번째 이미지 설명입니다.">
+          <img src="2-8.jpg" alt="2학년 이미지 7" />
+        </div>
+        <div class="card" data-year="year2" data-title="2학년 프로젝트 유튜브 8" data-desc="YouTube Unlisted 영상입니다.">
+          <iframe src="https://www.youtube.com/embed/2tmIMCj1UpM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="card" data-year="year2" data-title="2학년 프로젝트 유튜브 9" data-desc="YouTube Unlisted 두 번째 영상입니다.">
+          <iframe src="https://www.youtube.com/embed/-Ke2u_Z4bGE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <!-- 3학년 작품 -->
+        <div class="card" data-year="year3" data-title="3-1 YouTube" data-desc="3학년 프로젝트 영상 설명입니다.">
+          <iframe src="https://www.youtube.com/embed/UY9pF6BjEb0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        </div>
+      
       </div>
     </div>
   </section>
@@ -130,7 +192,7 @@
   <script>
     // 탭 필터
     const buttons = document.querySelectorAll('.tab-btn');
-    const cards   = document.querySelectorAll('.card');
+    const cards = document.querySelectorAll('.card');
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         const year = btn.dataset.year;
@@ -148,16 +210,37 @@
     cards.forEach(card => {
       card.addEventListener('click', () => {
         const title = card.dataset.title;
-        const desc  = card.dataset.desc;
-        const media = card.querySelector('img, video').cloneNode(true);
-        media.removeAttribute('controls'); // 영상이 재생되지 않도록 제거
+        const desc = card.dataset.desc;
+        let media;
+        if (card.querySelector('iframe')) {
+          media = document.createElement('iframe');
+          media.src = card.querySelector('iframe').src;
+          media.frameBorder = 0;
+          media.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          media.allowFullscreen = true;
+        } else {
+          media = card.querySelector('img, video').cloneNode(true);
+          if (media.tagName === 'VIDEO') {
+            media.setAttribute('controls', '');
+            media.loop = true;
+            media.muted = false;
+            media.play();
+          }
+        }
         modalBody.innerHTML = `<h3>${title}</h3><p>${desc}</p>`;
         modalBody.appendChild(media);
         modal.style.display = 'flex';
       });
     });
-    closeBtn.addEventListener('click', () => modal.style.display = 'none');
-    modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+    function closeModal() {
+      const video = modalBody.querySelector('video');
+      if (video) video.pause();
+      const iframe = modalBody.querySelector('iframe');
+      if (iframe) iframe.src = iframe.src;
+      modal.style.display = 'none';
+    }
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
   </script>
 </body>
 </html>

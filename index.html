@@ -1,36 +1,80 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>나의 포트폴리오</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* Slider Styles */
-    #works-slider { padding: 60px 0; background: #fff; }
-    .slider-wrapper { width: 80vw; margin: 0 auto; overflow: hidden; position: relative; }
-    .slider { display: flex; justify-content: center; align-items: center; transition: transform 0.8s ease-in-out; }
-    .slide {
-      flex: 0 0 50%;
-      max-width: 50%;
-      margin: 0 -10%;
-      overflow: hidden;
-      border: 4px solid #111;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.6s ease, filter 0.6s ease, opacity 0.6s ease;
-      transform: scale(0.8);
-      filter: blur(4px);
-      opacity: 0.6;
-      z-index: 1;
+    /* Hero Section */
+    #hero {
+      background: #FFF8F5;
+      padding: 80px 20px;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
     }
-    .slide video { width: 100%; height: auto; display: block; }
-    .slide.active {
-      transform: scale(1);
-      filter: none;
-      opacity: 1;
-      z-index: 2;
+    #hero h2 {
+      font-size: 2.5rem;
+      margin: 0 0 16px;
+      color: #333;
+    }
+    #hero .hero-subtitle {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* CTA Cards */
+    .cta-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      padding: 40px 20px;
+    }
+    .cta-card {
+      background: #FFF;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      text-align: center;
+      transition: transform .3s, box-shadow .3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cta-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .cta-card .icon {
+      font-size: 2.5rem;
+      background: #FFEBE8;
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      border-radius: 50%;
+      margin-bottom: 12px;
+    }
+    .cta-card.portfolio .icon {
+      background: #E8F6FF;
+    }
+    .cta-card.reel .icon {
+      background: #E8FFE8;
+    }
+    .cta-card h3 {
+      font-size: 1.25rem;
+      margin: 8px 0;
+      color: #333;
+    }
+    .cta-card p {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -49,37 +93,32 @@
 
   <!-- Hero Section -->
   <section id="hero">
-    <div class="container" style="text-align:center; padding: 80px 20px;">
-      <h2 id="hero-title">
-        <span class="fade-in-text" style="--delay: 0s">당신의</span>
-        <span class="fade-in-text" style="--delay: 0.2s">이야기를</span>
-        <span class="fade-in-text" style="--delay: 0.4s">영상과</span>
-        <span class="fade-in-text" style="--delay: 0.6s">이미지로</span>
-        <span class="fade-in-text" style="--delay: 0.8s">담아냅니다</span>
-      </h2>
-      <p class="hero-subtitle">안녕하세요! 저는 미디어콘텐츠 전공자로, 창의적인 시각 스토리텔링을 통해 사람들에게 감동을 전하는 작업을 해왔습니다.</p>
-    </div>
+    <h2>당신의 이야기를<br>영상과 이미지로 담아냅니다</h2>
+    <p class="hero-subtitle">안녕하세요! 저는 미디어콘텐츠 전공자로, 창의적인 시각 스토리텔링으로 사람들에게 감동을 전하는 크리에이터입니다.</p>
+  </section>
+
+  <!-- CTA Cards -->
+  <section class="cta-cards">
+    <a href="about.html" class="cta-card">
+      <div class="icon">👋</div>
+      <h3>소개</h3>
+      <p>저에 대해 알아보기</p>
+    </a>
+    <a href="portfolio.html" class="cta-card portfolio">
+      <div class="icon">📁</div>
+      <h3>포트폴리오</h3>
+      <p>제 작품 보러가기</p>
+    </a>
+    
   </section>
 
   <!-- Works Slider Section -->
-  <section id="works-slider">
-    <div class="container">
-      <h2 style="text-align:center; margin-bottom:30px;">📽️ Featured Reel</h2>
-      <div class="slider-wrapper">
-        <div class="slider">
-          <div class="slide active"><video src="m1.mp4" muted loop autoplay></video></div>
-          <div class="slide"><video src="m2.mp4" muted loop autoplay></video></div>
-          <div class="slide"><video src="m3.mp4" muted loop autoplay></video></div>
-          <div class="slide"><video src="m4.mp4" muted loop autoplay></video></div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- 간단 연락처 정보 -->
+<!-- 간단 연락
+<!-- 간단 연락처 정보 -->
   <section id="contact-info">
     <div class="container" style="text-align:center; padding: 40px 20px;">
-      <p>📧 jmj040308@egmail.com  |  📸 @mzoo</p>
+      <p>📧 jmj040308@gmail.com  |  📸 @mzoo</p>
     </div>
   </section>
 
@@ -88,21 +127,5 @@
       &copy; 2025 My Portfolio
     </div>
   </footer>
-
-  <script>
-    const slides = document.querySelectorAll('.slide');
-    let current = 0;
-    function updateSlides() {
-      slides.forEach((s, i) => {
-        s.classList.remove('active');
-        if (i === current) s.classList.add('active');
-      });
-    }
-    setInterval(() => {
-      current = (current + 1) % slides.length;
-      updateSlides();
-    }, 3000);
-    window.addEventListener('load', updateSlides);
-  </script>
 </body>
 </html>
