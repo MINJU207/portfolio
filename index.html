@@ -1,56 +1,118 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>나의 포트폴리오</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #111;
+    }
+
+    .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    header {
+      border-bottom: 1px solid #eee;
+    }
+
+    header .inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 500;
+    }
+
     /* Hero Section */
     #hero {
-      background: #FFF8F5;
-      padding: 80px 20px;
+      background: #ffffff;
       text-align: center;
-      font-family: 'Inter', sans-serif;
+      padding: 80px 20px 40px;
     }
+
     #hero h2 {
       font-size: 2.5rem;
-      margin: 0 0 16px;
-      color: #333;
+      margin-bottom: 16px;
     }
+
     #hero .hero-subtitle {
       font-size: 1.1rem;
       color: #555;
       line-height: 1.6;
       max-width: 600px;
-      margin: 0 auto;
+      margin: 0 auto 24px;
+    }
+
+    .hero-preview-video {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-preview-video video {
+      width: 50%;
+      max-width: 720px;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+      pointer-events: none;
     }
 
     /* CTA Cards */
     .cta-cards {
+      background: #fff;
+      padding: 40px 0;
+    }
+
+    .cta-cards .inner {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 24px;
-      padding: 40px 20px;
     }
+
     .cta-card {
-      background: #FFF;
+      background: #fff;
       border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       padding: 24px;
       text-decoration: none;
       color: inherit;
       text-align: center;
-      transition: transform .3s, box-shadow .3s;
+      transition: transform 0.3s, box-shadow 0.3s;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .cta-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
+
     .cta-card .icon {
       font-size: 2.5rem;
       background: #FFEBE8;
@@ -60,27 +122,38 @@
       border-radius: 50%;
       margin-bottom: 12px;
     }
-    .cta-card.portfolio .icon {
-      background: #E8F6FF;
-    }
-    .cta-card.download .icon {
-      background: #E8FFE8;
-    }
+
+    .cta-card.portfolio .icon { background: #E8F6FF; }
+    .cta-card.download .icon { background: #E8FFE8; }
+
     .cta-card h3 {
       font-size: 1.25rem;
       margin: 8px 0;
       color: #333;
     }
+
     .cta-card p {
       font-size: 0.95rem;
       color: #666;
       line-height: 1.5;
     }
+
+    #contact-info .inner {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      font-size: 14px;
+      color: #666;
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="container">
+    <div class="inner">
       <h1><a href="index.html" class="site-logo">My Portfolio</a></h1>
       <nav>
         <ul>
@@ -94,40 +167,45 @@
 
   <!-- Hero Section -->
   <section id="hero">
-    <h2>당신의 이야기를<br>영상과 이미지로 담아냅니다</h2>
-    <p class="hero-subtitle">안녕하세요! 저는 미디어콘텐츠 전공자로, 창의적인 시각 스토리텔링으로 사람들에게 감동을 전하는 크리에이터입니다.</p>
+    <div class="inner">
+      <h2>당신의 이야기를<br>영상과 이미지로 담아냅니다</h2>
+      <p class="hero-subtitle">안녕하세요! 경성대학교 미디어콘텐츠학과에 재학 중인 정민주입니다.⭐️</p>
+      <div class="hero-preview-video">
+        <video src="preview.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </div>
   </section>
 
   <!-- CTA Cards -->
   <section class="cta-cards">
-    <a href="about.html" class="cta-card">
-      <div class="icon">👋</div>
-      <h3>소개</h3>
-      <p>저에 대해 알아보기</p>
-    </a>
-    <a href="portfolio.html" class="cta-card portfolio">
-      <div class="icon">📁</div>
-      <h3>포트폴리오</h3>
-      <p>제 작품 보러가기</p>
-    </a>
-  <a href="download.html" class="cta-card download">
-  <div class="icon">📄</div>
-  <h3>다운로드</h3>
-  <p>이력서 받기</p>
-</a>
+    <div class="inner">
+      <a href="about.html" class="cta-card">
+        <div class="icon">👋</div>
+        <h3>소개</h3>
+        <p>저에 대해 알아보기</p>
+      </a>
+      <a href="portfolio.html" class="cta-card portfolio">
+        <div class="icon">📁</div>
+        <h3>포트폴리오</h3>
+        <p>제 작품 보러가기</p>
+      </a>
+      <a href="download.html" class="cta-card download">
+        <div class="icon">📄</div>
+        <h3>다운로드</h3>
+        <p>이력서 받기</p>
+      </a>
+    </div>
   </section>
 
-  <!-- Works Slider Section -->
-
-  <!-- 간단 연락처 정보 -->
+  <!-- 연락처 -->
   <section id="contact-info">
-    <div class="container" style="text-align:center; padding: 40px 20px;">
+    <div class="inner">
       <p>📧 jmj040308@gmail.com  |  📸 @mzoo</p>
     </div>
   </section>
 
   <footer>
-    <div class="container" style="text-align:center; padding: 20px 0; font-size:14px; color:#666;">
+    <div class="inner">
       &copy; 2025 My Portfolio
     </div>
   </footer>
