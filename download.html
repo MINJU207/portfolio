@@ -8,81 +8,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     /* Download Section Styling (Kakao Inspired) */
-    #download {
-      background: #FFF8F5;
-      padding: 80px 20px;
-      font-family: 'Inter', sans-serif;
-    }
-    #download h2 {
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 16px;
-      color: #333;
-    }
-    #download .intro {
-      text-align: center;
-      color: #555;
-      margin-bottom: 40px;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-    #download .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    #download .card {
-      background: #FFFFFF;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      padding: 24px;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    #download .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-    #download .card .icon {
-      font-size: 2.5rem;
-      background: #FFEBE8;
-      width: 60px;
-      height: 60px;
-      line-height: 60px;
-      border-radius: 50%;
-      margin: 0 auto 12px;
-    }
-    #download .card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 8px;
-      color: #111;
-    }
-    #download .card p {
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.5;
-      margin-bottom: 16px;
-    }
+    #download { background: #FFF8F5; padding: 80px 20px; font-family: 'Inter', sans-serif; }
+    #download h2 { font-size: 2.5rem; text-align: center; margin-bottom: 16px; color: #333; }
+    #download .intro { text-align: center; color: #555; margin-bottom: 40px; font-size: 1.1rem; line-height: 1.6; }
+    #download .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:24px; max-width:1000px; margin:0 auto; }
+    #download .card { background:#fff; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,0.05); padding:24px; text-align:center; transition:transform .3s,box-shadow .3s; }
+    #download .card:hover { transform:translateY(-6px); box-shadow:0 8px 20px rgba(0,0,0,0.1); }
+    #download .card .icon { font-size:2.5rem; background:#FFEBE8; width:60px; height:60px; line-height:60px; border-radius:50%; margin:0 auto 12px; }
+    #download .card h3 { font-size:1.25rem; margin-bottom:8px; color:#111; }
+    #download .card p { font-size:0.95rem; color:#555; line-height:1.5; margin-bottom:16px; }
+    /* 아이콘-only 버튼 */
     #download .btn-download {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #f1f1f1;
-      color: #111;
-      font-weight: 600;
-      padding: 12px 24px;
-      border-radius: 12px;
-      text-decoration: none;
-      border: 1px solid #ddd;
-      transition: background 0.3s;
-    }
-    #download .btn-download .icon {
-      font-size: 1.5rem;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:48px;
+      height:48px;
+      background:#fafafa;
+      color:#111;
+      font-size:1.5rem;
+      border-radius:12px;
+      text-decoration:none;
+      transition:background .3s;
     }
     #download .btn-download:hover {
-      background: #333;
+      background:#ececec;
     }
   </style>
 </head>
@@ -92,7 +42,6 @@
       <h1><a href="index.html" class="site-logo">My Portfolio</a></h1>
       <nav>
         <ul>
-          <li><a href="index.html">홈</a></li>
           <li><a href="about.html">소개</a></li>
           <li><a href="portfolio.html">포트폴리오</a></li>
           <li><a href="download.html" class="active">다운로드</a></li>
@@ -107,19 +56,15 @@
     <div class="cards">
       <div class="card">
         <div class="icon">📄</div>
-        <h3>이력서<span class="highlight">(Resume)</span></h3>
+        <h3>이력서 <span class="highlight">(Resume)</span></h3>
         <p>최신 이력서를 PDF로 다운로드합니다.</p>
-        <a href="JMJ_Resume.pdf" download class="btn-download">
-          <span class="icon">⬇️</span> 다운로드
-        </a>
+        <a href="JMJ_Resume.pdf" download class="btn-download" aria-label="이력서 다운로드">⬇️</a>
       </div>
       <div class="card">
         <div class="icon">📝</div>
-        <h3>자기소개서<span class="highlight">(Cover Letter)</span></h3>
+        <h3>자기소개서 <span class="highlight">(Cover Letter)</span></h3>
         <p>자기소개서를 PDF로 다운로드합니다.</p>
-        <a href="JMJ_CoverLetter.pdf" download class="btn-download">
-          <span class="icon">⬇️</span> 다운로드
-        </a>
+        <a href="JMJ_CoverLetter.pdf" download class="btn-download" aria-label="자기소개서 다운로드">⬇️</a>
       </div>
     </div>
   </section>
@@ -129,11 +74,10 @@
       <p>📧 jmj040308@gmail.com&nbsp;|&nbsp;📸 @mzoo</p>
     </div>
   </section>
-
   <footer>
     <div class="container" style="text-align:center; padding:20px 0; font-size:14px; color:#666;">
       &copy; 2025 My Portfolio
     </div>
   </footer>
-</body>a
+</body>
 </html>
