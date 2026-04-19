@@ -3,55 +3,206 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>포트폴리오 | My Portfolio</title>
+  <title>Portfolio | My Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    /* Tabs */
-    .tabs {
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #111;
+    }
+
+    .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    header {
+      border-bottom: 1px solid #eee;
+    }
+
+    header .inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 500;
+    }
+
+    nav a.active {
+      border-bottom: 2px solid #111;
+      padding-bottom: 2px;
+    }
+
+    /* Page Header */
+    .page-header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .page-header h2 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .page-header p {
+      color: #888;
+      font-size: 0.95rem;
+    }
+
+    /* Grade Filter */
+    .filter-wrap {
+      padding: 32px 0 0;
+    }
+
+    .filter-buttons {
       display: flex;
       gap: 10px;
-      margin-bottom: 20px;
       flex-wrap: wrap;
+      margin-bottom: 40px;
     }
-    .tab-btn {
-      padding: 8px 16px;
+
+    .filter-btn {
+      padding: 8px 20px;
       background: #f1f1f1;
       border: none;
       border-radius: 6px;
       cursor: pointer;
       font-weight: 500;
-      transition: background 0.3s, color 0.3s;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: background 0.2s, color 0.2s;
     }
-    .tab-btn.active,
-    .tab-btn:hover {
+
+    .filter-btn.active,
+    .filter-btn:hover {
       background: #111;
       color: #fff;
     }
-    /* Grid Layout */
-    .grid {
+
+    /* Grade Section */
+    .grade-section {
+      transition: opacity 0.4s ease;
+    }
+
+    .grade-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 32px;
+      color: #111;
+    }
+
+    /* Project Group */
+    .project-group {
+      margin-bottom: 48px;
+    }
+
+    .project-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #222;
+    }
+
+    .project-title .sub-desc {
+      font-weight: 400;
+      color: #888;
+      font-size: 0.9rem;
+      margin-left: 8px;
+    }
+
+    .project-context {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin: 0 0 16px;
+    }
+
+    /* Card Grid */
+    .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
     }
-    /* Card */
+
     .card {
-      aspect-ratio: 16/9;
-      overflow: hidden;
+      background: #fff;
       border-radius: 12px;
-      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+      overflow: hidden;
       cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .card img,
-    .card video,
-    .card iframe {
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-img {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      position: relative;
+      background: #f5f5f5;
+    }
+
+    .card-img img,
+    .card-img video,
+    .card-img iframe {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
       pointer-events: none;
     }
-    /* Modal Styles */
+
+    .video-cover {
+      position: absolute;
+      inset: 0;
+    }
+
+    .card-info {
+      padding: 14px 16px;
+    }
+
+    .card-info h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0 0 4px;
+      color: #222;
+    }
+
+    .card-info p {
+      font-size: 0.82rem;
+      color: #888;
+      margin: 0;
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 40px 0;
+    }
+
+    /* Modal */
     #modal {
       display: none;
       position: fixed;
@@ -59,199 +210,753 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.6);
       justify-content: center;
       align-items: center;
       z-index: 10000;
       padding: 20px;
       box-sizing: border-box;
     }
+
     #modal .modal-content {
       background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 800px;
+      border-radius: 16px;
+      padding: 28px;
+      max-width: 820px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
       position: relative;
       box-sizing: border-box;
     }
-    #modal .modal-content img,
-    #modal .modal-content video,
-    #modal .modal-content iframe {
-      max-width: 100%;
-      max-height: 70vh;
-      display: block;
-      margin: 10px auto;
-    }
-    #modal .modal-close {
+
+    .modal-close {
       position: absolute;
-      top: 10px;
-      right: 15px;
+      top: 16px;
+      right: 20px;
       font-size: 24px;
       cursor: pointer;
-      color: #333;
+      color: #aaa;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      color: #111;
+    }
+
+    .modal-media {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #f0f0f0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .modal-media img,
+    .modal-media video,
+    .modal-media iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .modal-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
+
+    .modal-tech {
+      font-size: 0.85rem;
+      color: #555;
+      margin: 0 0 16px;
+      font-weight: 500;
+    }
+
+    .modal-desc {
+      font-size: 0.9rem;
+      color: #444;
+      line-height: 1.8;
+      border-top: 1px solid #eee;
+      padding-top: 16px;
+    }
+
+    .modal-desc h4 {
+      font-size: 0.95rem;
+      margin: 16px 0 6px;
+      color: #222;
+    }
+
+    .prompt-box {
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 0.82rem;
+      color: #555;
+      line-height: 1.6;
+      margin-top: 6px;
+    }
+
+    #contact-info {
+      border-top: 1px solid #eee;
+    }
+
+    #contact-info .inner {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      font-size: 14px;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <div class="container">
-      <h1><a href="index.html" class="site-logo">My Portfolio</a></h1>
+    <div class="inner">
+      <h1><a href="index.html" style="text-decoration:none; color:#111;">My Portfolio</a></h1>
       <nav>
         <ul>
-          <li><a href="about.html">소개</a></li>
-          <li><a href="portfolio.html" class="active">포트폴리오</a></li>
-         <li><a href="download.html">다운로드</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html" class="active">Portfolio</a></li>
+          <li><a href="download.html">Download</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
+  <section class="page-header">
+    <div class="inner">
+      <h2>📁 Portfolio</h2>
+      <p>학년별 프로젝트 아카이브</p>
+    </div>
+  </section>
+
   <section id="portfolio">
-    <div class="container">
-      <h2>📁</h2>
-      <h2>포트폴리오</h2>
-      <div class="tabs">
-        <button class="tab-btn active" data-year="all">전체</button>
-        <button class="tab-btn" data-year="year1">1학년</button>
-        <button class="tab-btn" data-year="year2">2학년</button>
-        <button class="tab-btn" data-year="year3">3학년</button>
-        <button class="tab-btn" data-year="year4">4학년</button>
-      </div>
-      <div class="grid">
-       <!-- 1학년 작품 -->
-<div class="card" data-year="year1" data-title="1학년 프로젝트 영상" data-desc="자기소개영상">
-  <video muted autoplay loop playsinline>
-    <source src="m3.mp4" type="video/mp4">
-  </video>
-</div>
-<div class="card" data-year="year1" data-title="1학년 표현기법" data-desc="글자로 희노애락 표현하기">
-  <img src="1-2.jpg" alt="1학년 이미지 2" />
-</div>
-        <!-- 2학년 작품 -->
-        <div class="card" data-year="year2" data-title="2학년 타이포모션그래픽" data-desc="시간을 주제로 표현한 작품">
-          <img src="2-1.jpg" alt="2학년 이미지 1" />
+    <div class="inner">
+      <div class="filter-wrap">
+        <div class="filter-buttons">
+          <button class="filter-btn active" onclick="showGrade('field-3d', this)">3D · Motion</button>
+          <button class="filter-btn" onclick="showGrade('field-video', this)">영상 편집</button>
+          <button class="filter-btn" onclick="showGrade('field-ai', this)">AI 아트</button>
+          <button class="filter-btn" onclick="showGrade('field-design', this)">디자인</button>
+          <button class="filter-btn" onclick="showGrade('field-mediaart', this)">미디어아트</button>
+          <button class="filter-btn" onclick="showGrade('field-web', this)">Web</button>
         </div>
-        <div class="card" data-year="year2" data-title="2학년 타이포모션그래픽" data-desc="여행을 주제로 표현한 작품">
-          <img src="2-2.jpg" alt="2학년 이미지 2" />
+
+        <!-- 3D · Motion -->
+        <div id="field-3d" class="grade-section" style="display:block;">
+          <h2 class="grade-title">3D · Motion</h2>
+
+          <div class="project-group">
+            <h3 class="project-title">01. Blender 3D 제작 🏙️ <span class="sub-desc">가상 공간 디자인</span></h3>
+            <p class="project-context">2024 | 미디어영상디자인프로젝트</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="Cyberpunk City (Blender)"
+                   data-local-video="3-5.mov"
+                   data-tech="#Blender3D #Cycles #Environment"
+                   data-desc-id="desc-blender"
+                   onclick="openModal(this)">
+                <div class="card-img">
+                  <video src="3-5.mov" muted autoplay loop playsinline></video>
+                  <div class="video-cover"></div>
+                </div>
+                <div class="card-info"><h3>Cinematic City View</h3><p>3D Modeling & Rendering</p></div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="project-group">
+            <h3 class="project-title">02. Cinema 4D 영상 제작 🎬 <span class="sub-desc">3D 공간 디자인</span></h3>
+            <p class="project-context">2023 | 영상콘텐츠기획제작</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="C4D — 사이버펑크 도시"
+                   data-local-video="2-5.mp4"
+                   data-tech="#Cinema4D #3D #CyberpunkCity"
+                   data-desc-id="desc-c4d"
+                   onclick="openModal(this)">
+                <div class="card-img">
+                  <video src="2-5.mp4" muted autoplay loop playsinline></video>
+                </div>
+                <div class="card-info"><h3>C4D — 사이버펑크 도시</h3><p>3D Animation</p></div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="card" data-year="year2" data-title="2학년 타이포모션그래픽" data-desc="타이포모션 라이즈-Get a Gitter">
-          <video muted autoplay loop playsinline>
-            <source src="2-3.mp4" type="video/mp4" />
-          </video>
+
+        <!-- 영상 편집 -->
+        <div id="field-video" class="grade-section" style="display:none;">
+          <h2 class="grade-title">영상 편집</h2>
+
+          <div class="project-group">
+            <h3 class="project-title">01. 부산 동구 숏폼 공모전 🎬 <span class="sub-desc">지역 관광 홍보</span></h3>
+            <p class="project-context">2024 | 영상콘텐츠기획제작 3</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="부산 동구 숏폼 공모전 출품작"
+                   data-video="https://www.youtube.com/embed/Z2PKrolP4-E"
+                   data-tech="#Premiere #AfterEffects #Busan"
+                   data-desc-id="desc-busan"
+                   onclick="openModal(this)">
+                <div class="card-img">
+                  <img src="https://img.youtube.com/vi/Z2PKrolP4-E/hqdefault.jpg" alt="공모전 썸네일" />
+                  <div class="video-cover" style="display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);">
+                    <span style="color:#fff;font-size:2.5rem;opacity:0.9;">▶</span>
+                  </div>
+                </div>
+                <div class="card-info"><h3>부산 동구 관광 홍보</h3><p>Short-form Video</p></div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="project-group">
+            <h3 class="project-title">02. 1인미디어 — 팟빵 라디오 🎙️ <span class="sub-desc">여행 라디오 진행</span></h3>
+            <p class="project-context">2024 | 1인미디어제작운영</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="팟빵 라디오 — 도쿄편"
+                   data-video="https://www.youtube.com/embed/UY9pF6BjEb0"
+                   data-tech="#Radio #1인미디어 #YouTube"
+                   data-desc-id="desc-radio1"
+                   onclick="openModal(this)">
+                <div class="card-img">
+                  <img src="https://img.youtube.com/vi/UY9pF6BjEb0/hqdefault.jpg" alt="도쿄편 썸네일" />
+                  <div class="video-cover" style="display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);">
+                    <span style="color:#fff;font-size:2.5rem;opacity:0.9;">▶</span>
+                  </div>
+                </div>
+                <div class="card-info"><h3>팟빵 라디오 — 도쿄편</h3><p>1인미디어 진행</p></div>
+              </div>
+              <div class="card"
+                   data-title="팟빵 라디오 — 요코하마편"
+                   data-video="https://www.youtube.com/embed/sa2hFHN0hik"
+                   data-tech="#Radio #1인미디어 #YouTube"
+                   data-desc-id="desc-radio2"
+                   onclick="openModal(this)">
+                <div class="card-img">
+                  <img src="https://img.youtube.com/vi/sa2hFHN0hik/hqdefault.jpg" alt="요코하마편 썸네일" />
+                  <div class="video-cover" style="display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);">
+                    <span style="color:#fff;font-size:2.5rem;opacity:0.9;">▶</span>
+                  </div>
+                </div>
+                <div class="card-info"><h3>팟빵 라디오 — 요코하마편</h3><p>1인미디어 진행</p></div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="project-group">
+            <h3 class="project-title">03. 공모전 출품작 🏆 <span class="sub-desc">한자공모전 & 부산영상공모전</span></h3>
+            <p class="project-context">2023 | 대외활동</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="한자공모전 — 낙화유수"
+                   data-local-video="2-4.mp4"
+                   data-tech="#AfterEffects #Calligraphy"
+                   data-desc-id="desc-hanja"
+                   onclick="openModal(this)">
+                <div class="card-img">
+                  <video src="2-4.mp4" muted autoplay loop playsinline></video>
+                </div>
+                <div class="card-info"><h3>한자공모전 — 낙화유수</h3><p>Motion Video</p></div>
+              </div>
+              <div class="card"
+                   data-title="부산영상공모전"
+                   data-video="https://www.youtube.com/embed/2tmIMCj1UpM"
+                   data-tech="#Premiere #TeamProject"
+                   data-desc-id="desc-contest"
+                   onclick="openModal(this)">
+                <div class="card-img">
+                  <img src="https://img.youtube.com/vi/2tmIMCj1UpM/hqdefault.jpg" alt="부산영상공모전" />
+                  <div class="video-cover" style="display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);">
+                    <span style="color:#fff;font-size:2.5rem;opacity:0.9;">▶</span>
+                  </div>
+                </div>
+                <div class="card-info"><h3>부산영상공모전</h3><p>Contest Video</p></div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="project-group">
+            <h3 class="project-title">04. 지역사회 프로젝트 🌏 <span class="sub-desc">동아리 활동 & 지역 홍보</span></h3>
+            <p class="project-context">2023 | 동아리활동</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="지역사회 프로젝트 — 구포나루축제"
+                   data-video="https://www.youtube.com/embed/-Ke2u_Z4bGE"
+                   data-tech="#Vlog #Community #Club"
+                   data-desc-id="desc-festival"
+                   onclick="openModal(this)">
+                <div class="card-img">
+                  <img src="https://img.youtube.com/vi/-Ke2u_Z4bGE/hqdefault.jpg" alt="구포나루축제" />
+                  <div class="video-cover" style="display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);">
+                    <span style="color:#fff;font-size:2.5rem;opacity:0.9;">▶</span>
+                  </div>
+                </div>
+                <div class="card-info"><h3>구포나루축제</h3><p>Club Activity</p></div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="project-group">
+            <h3 class="project-title">05. 타이포모션 라이즈 🎞️ <span class="sub-desc">Get a Guitar</span></h3>
+            <p class="project-context">2023 | 타이포와모션그래픽</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="타이포모션 라이즈 — Get a Guitar"
+                   data-local-video="2-3.mp4"
+                   data-tech="#AfterEffects #MotionGraphic"
+                   data-desc-id="desc-typo3"
+                   onclick="openModal(this)">
+                <div class="card-img">
+                  <video src="2-3.mp4" muted autoplay loop playsinline></video>
+                </div>
+                <div class="card-info"><h3>Get a Guitar</h3><p>Motion Graphic</p></div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="project-group">
+            <h3 class="project-title">06. 자기소개 영상 🌱</h3>
+            <p class="project-context">2022 | 표현기법</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="자기소개 영상"
+                   data-local-video="m3.mp4"
+                   data-tech="#Premiere #SelfIntro"
+                   data-desc-id="desc-intro"
+                   onclick="openModal(this)">
+                <div class="card-img">
+                  <video src="m3.mp4" muted autoplay loop playsinline></video>
+                </div>
+                <div class="card-info"><h3>자기소개 영상</h3><p>Intro Video</p></div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="card" data-year="year2" data-title="2학년 한자공모전" data-desc="한자공모전 - 낙화유수">
-          <video muted autoplay loop playsinline>
-            <source src="2-4.mp4" type="video/mp4" />
-          </video>
+
+        <!-- AI 아트 -->
+        <div id="field-ai" class="grade-section" style="display:none;">
+          <h2 class="grade-title">AI 아트</h2>
+
+          <div class="project-group">
+            <h3 class="project-title">01. AI를 활용한 홍보영상 제작 🎥 <span class="sub-desc">영상 생성 및 기획</span></h3>
+            <p class="project-context">2024 | AI 이미지프로덕션 2</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="미디어콘텐츠학과 홍보영상 (1)"
+                   data-local-video="1.MP4"
+                   data-tech="#AI #SORA #CapCut"
+                   data-desc-id="desc-promo1"
+                   onclick="openModal(this)">
+                <div class="card-img">
+                  <video src="1.MP4" muted autoplay loop playsinline></video>
+                  <div class="video-cover"></div>
+                </div>
+                <div class="card-info"><h3>미디어콘텐츠학과 홍보영상 (1)</h3><p>with AI</p></div>
+              </div>
+              <div class="card"
+                   data-title="미디어콘텐츠학과 홍보영상 (2)"
+                   data-local-video="2.MP4"
+                   data-tech="#AI #SORA #CapCut"
+                   data-desc-id="desc-promo2"
+                   onclick="openModal(this)">
+                <div class="card-img">
+                  <video src="2.MP4" muted autoplay loop playsinline></video>
+                  <div class="video-cover"></div>
+                </div>
+                <div class="card-info"><h3>미디어콘텐츠학과 홍보영상 (2)</h3><p>with AI</p></div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="project-group">
+            <h3 class="project-title">02. 페르소나 생성하기 프로젝트 🎨 <span class="sub-desc">나만의 페르소나 만들기</span></h3>
+            <p class="project-context">2024 | AI 이미지프로덕션 2</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="페르소나 캐릭터 (Angel)"
+                   data-img="angle.jpg"
+                   data-tech="#AI #StableDiffusion"
+                   data-desc-id="desc-angel"
+                   onclick="openModal(this)">
+                <div class="card-img"><img src="angle.jpg" alt="Angel" /></div>
+                <div class="card-info"><h3>페르소나 캐릭터 (Angel)</h3><p>순수와 빛의 상징</p></div>
+              </div>
+              <div class="card"
+                   data-title="페르소나 캐릭터 (Devil)"
+                   data-img="davil.jpg"
+                   data-tech="#AI #StableDiffusion"
+                   data-desc-id="desc-devil"
+                   onclick="openModal(this)">
+                <div class="card-img"><img src="davil.jpg" alt="Devil" /></div>
+                <div class="card-info"><h3>페르소나 캐릭터 (Devil)</h3><p>유혹과 어둠</p></div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="card" data-year="year2" data-title="2학년 영상콘텐츠기획제작" data-desc="C4D - 사이버펑크도시">
-          <video muted autoplay loop playsinline>
-            <source src="2-5.mp4" type="video/mp4" />
-          </video>
+
+        <!-- 디자인 -->
+        <div id="field-design" class="grade-section" style="display:none;">
+          <h2 class="grade-title">디자인</h2>
+
+          <div class="project-group">
+            <h3 class="project-title">01. AI 초현실주의 아트 🎨 <span class="sub-desc">생성형 AI 활용</span></h3>
+            <p class="project-context">2023 | 미디어콘텐츠디자인</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="AI 초현실주의 아트"
+                   data-img="2-8.jpg"
+                   data-tech="#Photoshop #GenerativeAI #Surrealism"
+                   data-desc-id="desc-surreal"
+                   onclick="openModal(this)">
+                <div class="card-img"><img src="2-8.jpg" alt="초현실주의" /></div>
+                <div class="card-info"><h3>초현실주의 (Surrealism)</h3><p>Generative AI Art</p></div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="project-group">
+            <h3 class="project-title">02. 부산 인포그래픽 📊 <span class="sub-desc">정보 시각화 디자인</span></h3>
+            <p class="project-context">2023 | 미디어콘텐츠디자인</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="부산 인포그래픽"
+                   data-img="2-7.png"
+                   data-tech="#Illustrator #Infographic #Busan"
+                   data-desc-id="desc-infographic"
+                   onclick="openModal(this)">
+                <div class="card-img"><img src="2-7.png" alt="부산 인포그래픽" /></div>
+                <div class="card-info"><h3>부산 인포그래픽</h3><p>Information Design</p></div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="project-group">
+            <h3 class="project-title">03. 타이포 모션그래픽 🔠 <span class="sub-desc">시간 · 여행</span></h3>
+            <p class="project-context">2023 | 타이포와모션그래픽</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="타이포모션 — 시간 (Time)"
+                   data-img="2-1.jpg"
+                   data-tech="#Typography #Photoshop #MotionGraphic"
+                   data-desc-id="desc-typo1"
+                   onclick="openModal(this)">
+                <div class="card-img"><img src="2-1.jpg" alt="시간" /></div>
+                <div class="card-info"><h3>시간 (Time)</h3><p>Typo Graphic</p></div>
+              </div>
+              <div class="card"
+                   data-title="타이포모션 — 여행 (Travel)"
+                   data-img="2-2.jpg"
+                   data-tech="#Typography #Photoshop #MotionGraphic"
+                   data-desc-id="desc-typo2"
+                   onclick="openModal(this)">
+                <div class="card-img"><img src="2-2.jpg" alt="여행" /></div>
+                <div class="card-info"><h3>여행 (Travel)</h3><p>Typo Graphic</p></div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="project-group">
+            <h3 class="project-title">04. 표현기법 — 희노애락 ✏️ <span class="sub-desc">글자로 감정 표현하기</span></h3>
+            <p class="project-context">2022 | 표현기법</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="표현기법 — 희노애락"
+                   data-img="1-2.jpg"
+                   data-tech="#Typography #BasicDesign"
+                   data-desc-id="desc-emotion"
+                   onclick="openModal(this)">
+                <div class="card-img"><img src="1-2.jpg" alt="희노애락" /></div>
+                <div class="card-info"><h3>표현기법 (희노애락)</h3><p>Basic Design</p></div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="card" data-year="year2" data-title="2학년 미디어콘텐츠디자인" data-desc="부산을 주제로 한 인포그래픽">
-          <img src="2-7.png" alt="2학년 이미지 7" />
+
+        <!-- 미디어아트 -->
+        <div id="field-mediaart" class="grade-section" style="display:none;">
+          <h2 class="grade-title">미디어아트</h2>
+
+          <div class="project-group">
+            <h3 class="project-title">01. 미디어아트 작품 🔮 <span class="sub-desc">디지털 예술의 융합</span></h3>
+            <p class="project-context">2024 | 1인미디어제작운영</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="미디어아트 작품"
+                   data-video="https://www.youtube.com/embed/F19ipyq7_Fk"
+                   data-tech="#TouchDesigner #MediaArt #AfterEffects"
+                   data-desc-id="desc-mediaart"
+                   onclick="openModal(this)">
+                <div class="card-img">
+                  <img src="https://img.youtube.com/vi/F19ipyq7_Fk/hqdefault.jpg" alt="미디어아트 썸네일" />
+                  <div class="video-cover" style="display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);">
+                    <span style="color:#fff;font-size:2.5rem;opacity:0.9;">▶</span>
+                  </div>
+                </div>
+                <div class="card-info"><h3>Experimental Media Art</h3><p>Digital Visuals</p></div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="card" data-year="year2" data-title="2학년 미디어콘텐츠디자인 7" data-desc="포토샵 생성형 AI 초현실주의 작품">
-          <img src="2-8.jpg" alt="2학년 이미지 7" />
+
+        <!-- Web -->
+        <div id="field-web" class="grade-section" style="display:none;">
+          <h2 class="grade-title">Web</h2>
+
+          <div class="project-group">
+            <h3 class="project-title">01. 포트폴리오 웹사이트 🖥️ <span class="sub-desc">나만의 아카이브 구축</span></h3>
+            <p class="project-context">2024 | AI 이미지프로덕션 1</p>
+            <div class="gallery-grid">
+              <div class="card"
+                   data-title="개인 포트폴리오 웹사이트"
+                   data-img="3-3.png"
+                   data-tech="#HTML5 #CSS3 #JavaScript"
+                   data-desc-id="desc-webport"
+                   onclick="openModal(this)">
+                <div class="card-img"><img src="3-3.png" alt="포트폴리오 웹사이트" /></div>
+                <div class="card-info"><h3>Interactive Portfolio</h3><p>Web Publishing</p></div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="card" data-year="year2" data-title="2학년 부산영상공모전" data-desc="부산영상공모전">
-          <iframe src="https://www.youtube.com/embed/2tmIMCj1UpM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="card" data-year="year2" data-title="2학년 동아리활동" data-desc="지역사회프로젝트-구포나루축제">
-          <iframe src="https://www.youtube.com/embed/-Ke2u_Z4bGE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <!-- 3학년 작품 -->
-        <div class="card" data-year="year3" data-title="3학년 1인미디어제작운영" data-desc="팟빵 라디오 진행-도쿄편">
-          <iframe src="https://www.youtube.com/embed/UY9pF6BjEb0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="card" data-year="year3" data-title="3학년 1인미디어제작운영" data-desc="팟빵 라디오 진행-요코하마편">
-  <iframe src="https://www.youtube.com/embed/sa2hFHN0hik"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-</div>
-        </div>
-      
+
+        <!-- 프로젝트 섹션 제거 (분야별로 통합됨) -->
+
       </div>
     </div>
   </section>
 
+
+    <!-- 숨김 상세 설명 -->
+  <div id="hidden-details" style="display:none;">
+    <div id="desc-angel" class="detail-box">
+      <p>Gemini를 사용하여 캐릭터 이미지를 생성하고 성격과 세계관을 부여하여 대화가 가능한 페르소나 캐릭터를 생성하였습니다.</p>
+      <h4>🪐 세계관 및 기획 의도</h4>
+      <p>엔젤은 인간의 영혼이 올바르게 성장할 수 있도록 돕기 위해 만들어진 '선의 인도자'로, 희망과 용기를 발견하고 올바른 선택으로 이어지도록 조용히 이끌어줍니다.</p>
+      <h4>📝 성격 키워드</h4>
+      <div class="prompt-box">#따뜻함 #상냥함 #순수함 #정의감 #격려 #헌신적 #긍정적</div>
+    </div>
+    <div id="desc-devil" class="detail-box">
+      <p>Gemini를 사용하여 캐릭터 이미지를 생성하고 성격과 세계관을 부여하여 대화가 가능한 페르소나 캐릭터를 생성하였습니다.</p>
+      <h4>🪐 세계관 및 기획 의도</h4>
+      <p>악마는 인간의 내면에 숨겨진 욕망과 본능을 드러나게 하는 '유혹의 관찰자'로, 다양한 시험을 통해 인간 스스로 어떤 선택을 하는지 시험합니다.</p>
+    </div>
+    <div id="desc-promo1" class="detail-box">
+      <p>학과 홍보를 위해 K-POP 뮤직비디오 스타일의 빠르고 감각적인 영상을 AI로 생성했습니다.</p>
+      <h4>🎬 기획 의도</h4>
+      <p>기존의 딱딱한 텍스트 위주 학과 소개에서 벗어나, Z세대가 선호하는 숏폼 감성과 화려한 비주얼을 적용했습니다.</p>
+      <h4>🛠️ 사용 툴</h4>
+      <p>OpenAI SORA, CapCut, Vrew</p>
+    </div>
+    <div id="desc-promo2" class="detail-box">
+      <p>학과 홍보를 위해 K-POP 뮤직비디오 스타일의 빠르고 감각적인 영상을 AI로 생성했습니다.</p>
+      <h4>🎬 기획 의도</h4>
+      <p>기존의 딱딱한 텍스트 위주 학과 소개에서 벗어나, Z세대가 선호하는 숏폼 감성과 화려한 비주얼을 적용했습니다.</p>
+      <h4>🛠️ 사용 툴</h4>
+      <p>OpenAI SORA, CapCut, Vrew</p>
+    </div>
+    <div id="desc-webport" class="detail-box">
+      <p>디자이너로서의 정체성을 보여주고 작업물을 체계적으로 아카이빙하기 위해 제작한 반응형 웹사이트입니다.</p>
+      <h4>💻 주요 기능</h4>
+      <p>학년별 필터링, 모달 팝업으로 페이지 이동 없이 상세 내용을 확인할 수 있는 직관적인 UI를 구현했습니다.</p>
+      <h4>🛠️ 사용 툴</h4>
+      <p>HTML5, CSS3, JavaScript, VS Code</p>
+    </div>
+    <div id="desc-blender" class="detail-box">
+      <p>오픈소스 3D 툴인 Blender를 활용하여 근미래적인 분위기의 거대 도시 환경을 구축한 프로젝트입니다.</p>
+      <h4>🏙️ 기획 의도</h4>
+      <p>Sci-fi 영화의 한 장면처럼 Volumetric Fog와 네온 사인을 활용하여 도시의 밀도감과 깊이감 있는 분위기를 연출했습니다.</p>
+      <h4>🛠️ 사용 툴</h4>
+      <p>Blender 4.0 (Cycles Render), Photoshop</p>
+    </div>
+    <div id="desc-mediaart" class="detail-box">
+      <p>디지털 기술과 예술적 감성을 결합하여 시각적인 아름다움을 표현한 미디어아트 프로젝트입니다.</p>
+      <h4>🎨 기획 의도</h4>
+      <p>단순한 영상 재생을 넘어, 공간과 소리가 시각적으로 어떻게 연결될 수 있는지 탐구했습니다.</p>
+      <h4>🛠️ 사용 툴</h4>
+      <p>TouchDesigner (실시간 비주얼), After Effects (후보정), Premiere Pro (편집)</p>
+    </div>
+    <div id="desc-busan" class="detail-box">
+      <p>부산 동구의 숨겨진 명소를 MZ세대의 감성으로 담아낸 숏폼 관광 홍보 영상입니다.</p>
+      <h4>🎬 기획 의도</h4>
+      <p>'동구의 재발견'을 주제로, 잘 알려진 관광지보다는 골목길의 감성과 레트로한 매력을 강조했습니다.</p>
+      <h4>🛠️ 사용 툴</h4>
+      <p>Adobe Premiere Pro, iPhone 16 Pro (4K 촬영)</p>
+    </div>
+    <div id="desc-radio1" class="detail-box">
+      <p>일본 여행을 주제로 직접 기획하고 진행한 팟빵 라디오 콘텐츠입니다.</p>
+      <h4>🎙️ 기획 의도</h4>
+      <p>여행지의 감성과 정보를 라디오 포맷으로 전달하며 1인 미디어 운영 역량을 키웠습니다.</p>
+    </div>
+    <div id="desc-radio2" class="detail-box">
+      <p>요코하마를 주제로 한 팟빵 라디오 시리즈 콘텐츠입니다.</p>
+      <h4>🎙️ 기획 의도</h4>
+      <p>도쿄편에 이어 요코하마의 특색 있는 문화와 공간을 라디오 형식으로 소개했습니다.</p>
+    </div>
+    <div id="desc-typo1" class="detail-box">
+      <p>시간을 주제로 타이포그래피로 표현한 작품입니다.</p>
+    </div>
+    <div id="desc-typo2" class="detail-box">
+      <p>여행을 주제로 타이포그래피로 표현한 작품입니다.</p>
+    </div>
+    <div id="desc-typo3" class="detail-box">
+      <p>타이포모션 라이즈 — Get a Guitar 모션그래픽 영상입니다.</p>
+    </div>
+    <div id="desc-hanja" class="detail-box">
+      <p>한자공모전 출품작으로, 낙화유수(落花流水)를 주제로 제작한 영상입니다.</p>
+    </div>
+    <div id="desc-contest" class="detail-box">
+      <p>부산영상공모전 출품작입니다.</p>
+    </div>
+    <div id="desc-c4d" class="detail-box">
+      <p>Cinema 4D를 활용하여 제작한 사이버펑크 도시 컨셉 영상입니다.</p>
+    </div>
+    <div id="desc-festival" class="detail-box">
+      <p>지역사회 프로젝트의 일환으로 동아리 활동을 통해 제작된 구포나루축제 홍보 영상입니다.</p>
+    </div>
+    <div id="desc-infographic" class="detail-box">
+      <p>부산을 주제로 한 인포그래픽 디자인 작업입니다.</p>
+    </div>
+    <div id="desc-surreal" class="detail-box">
+      <p>포토샵의 생성형 AI 기능을 활용하여 제작한 초현실주의 아트워크입니다.</p>
+    </div>
+    <div id="desc-intro" class="detail-box">
+      <p>1학년 때 첫 번째로 제작한 자기소개 영상입니다.</p>
+    </div>
+    <div id="desc-emotion" class="detail-box">
+      <p>글자를 활용하여 희노애락(喜怒哀樂)의 감정을 표현한 기초 디자인 작품입니다.</p>
+    </div>
+  </div>
+
   <!-- Modal -->
-  <div id="modal">
+  <div id="modal" onclick="handleModalBgClick(event)">
     <div class="modal-content">
-      <span class="modal-close">&times;</span>
-      <div class="modal-body"></div>
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <div class="modal-media" id="modal-media"></div>
+      <h3 class="modal-title" id="modal-title"></h3>
+      <p class="modal-tech" id="modal-tech"></p>
+      <div class="modal-desc" id="modal-desc"></div>
     </div>
   </div>
 
   <section id="contact-info">
-    <div class="container" style="text-align:center; padding: 40px 20px;">
+    <div class="inner">
       <p>📧 jmj040308@gmail.com  |  📸 @mzoo</p>
     </div>
   </section>
 
   <footer>
-    <div class="container" style="text-align:center; padding: 20px 0; font-size:14px; color:#666;">
-      &copy; 2025 My Portfolio
-    </div>
+    <div class="inner">&copy; 2025 My Portfolio</div>
   </footer>
 
   <script>
-    // 탭 필터
-    const buttons = document.querySelectorAll('.tab-btn');
-    const cards = document.querySelectorAll('.card');
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const year = btn.dataset.year;
-        buttons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        cards.forEach(card => {
-          card.style.display = (year === 'all' || card.dataset.year === year) ? 'block' : 'none';
-        });
-      });
-    });
-    // 모달 동작
-    const modal = document.getElementById('modal');
-    const modalBody = modal.querySelector('.modal-body');
-    const closeBtn = modal.querySelector('.modal-close');
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        const title = card.dataset.title;
-        const desc = card.dataset.desc;
-        let media;
-        if (card.querySelector('iframe')) {
-          media = document.createElement('iframe');
-          media.src = card.querySelector('iframe').src;
-          media.frameBorder = 0;
-          media.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-          media.allowFullscreen = true;
-        } else {
-          media = card.querySelector('img, video').cloneNode(true);
-          if (media.tagName === 'VIDEO') {
-            media.setAttribute('controls', '');
-            media.loop = true;
-            media.muted = false;
-            media.play();
-          }
-        }
-        modalBody.innerHTML = `<h3>${title}</h3><p>${desc}</p>`;
-        modalBody.appendChild(media);
-        modal.style.display = 'flex';
-      });
-    });
-    function closeModal() {
-      const video = modalBody.querySelector('video');
-      if (video) video.pause();
-      const iframe = modalBody.querySelector('iframe');
-      if (iframe) iframe.src = iframe.src;
-      modal.style.display = 'none';
+    function showGrade(gradeId, btn) {
+      document.querySelectorAll('.grade-section').forEach(s => s.style.display = 'none');
+      const target = document.getElementById(gradeId);
+      if (target) {
+        target.style.display = 'block';
+        target.style.opacity = 0;
+        setTimeout(() => {
+          target.style.opacity = 1;
+          target.style.transition = 'opacity 0.4s ease';
+        }, 10);
+      }
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
     }
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+    function openModal(card) {
+      const title = card.dataset.title || '';
+      const tech = card.dataset.tech || '';
+      const descId = card.dataset.descId;
+      const img = card.dataset.img;
+      const video = card.dataset.video;
+      const localVideo = card.dataset.localVideo;
+
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-tech').textContent = tech;
+
+      const descEl = descId ? document.getElementById(descId) : null;
+      document.getElementById('modal-desc').innerHTML = descEl ? descEl.innerHTML : '';
+
+      const mediaBox = document.getElementById('modal-media');
+      mediaBox.innerHTML = '';
+
+      if (video) {
+        const iframe = document.createElement('iframe');
+        // YouTube watch URL → embed URL 변환
+        let embedSrc = video.replace('watch?v=', 'embed/');
+        iframe.src = embedSrc;
+        iframe.frameBorder = '0';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.style.cssText = 'width:100%;height:100%;';
+        mediaBox.appendChild(iframe);
+      } else if (localVideo) {
+        const vid = document.createElement('video');
+        vid.src = localVideo;
+        vid.controls = true;
+        vid.autoplay = true;
+        vid.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000;';
+        mediaBox.appendChild(vid);
+      } else if (img) {
+        const image = document.createElement('img');
+        image.src = img;
+        image.alt = title;
+        image.style.cssText = 'width:100%;height:100%;object-fit:contain;';
+        mediaBox.appendChild(image);
+      }
+
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      const mediaBox = document.getElementById('modal-media');
+      const vid = mediaBox.querySelector('video');
+      if (vid) vid.pause();
+      const iframe = mediaBox.querySelector('iframe');
+      if (iframe) iframe.src = iframe.src; // 재생 중지
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function handleModalBgClick(e) {
+      if (e.target === document.getElementById('modal')) closeModal();
+    }
   </script>
 </body>
 </html>
