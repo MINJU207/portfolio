@@ -893,9 +893,13 @@
     </div>
     <div id="desc-typo1" class="detail-box">
       <p>시간을 주제로 타이포그래피로 표현한 작품입니다.</p>
+      <h4>🛠️ 사용 툴</h4>
+      <p>Adobe Illustrator</p>
     </div>
     <div id="desc-typo2" class="detail-box">
       <p>여행을 주제로 타이포그래피로 표현한 작품입니다.</p>
+      <h4>🛠️ 사용 툴</h4>
+      <p>Adobe Illustrator</p>
     </div>
     <div id="desc-typo3" class="detail-box">
       <p>타이포모션 라이즈 — Get a Guitar 모션그래픽 영상입니다.</p>
@@ -914,15 +918,21 @@
     </div>
     <div id="desc-infographic" class="detail-box">
       <p>부산을 주제로 한 인포그래픽 디자인 작업입니다.</p>
+      <h4>🛠️ 사용 툴</h4>
+      <p>Adobe Illustrator</p>
     </div>
     <div id="desc-surreal" class="detail-box">
       <p>포토샵의 생성형 AI 기능을 활용하여 제작한 초현실주의 아트워크입니다.</p>
+      <h4>🛠️ 사용 툴</h4>
+      <p>Adobe Illustrator, Adobe Photoshop</p>
     </div>
     <div id="desc-intro" class="detail-box">
       <p>1학년 때 첫 번째로 제작한 자기소개 영상입니다.</p>
     </div>
     <div id="desc-emotion" class="detail-box">
       <p>글자를 활용하여 희노애락(喜怒哀樂)의 감정을 표현한 기초 디자인 작품입니다.</p>
+      <h4>🛠️ 사용 툴</h4>
+      <p>Adobe Illustrator</p>
     </div>
   </div>
 
@@ -986,15 +996,21 @@
       mediaBox.innerHTML = '';
 
       if (video) {
-        const iframe = document.createElement('iframe');
-        // YouTube watch URL → embed URL 변환
-        let embedSrc = video.replace('watch?v=', 'embed/');
-        iframe.src = embedSrc;
-        iframe.frameBorder = '0';
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        iframe.allowFullscreen = true;
-        iframe.style.cssText = 'width:100%;height:100%;';
-        mediaBox.appendChild(iframe);
+        // 유튜브 썸네일 + 버튼
+        const videoId = video.replace('https://www.youtube.com/embed/', '');
+        const youtubeUrl = 'https://www.youtube.com/watch?v=' + videoId;
+        const thumbUrl = 'https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg';
+
+        mediaBox.style.position = 'relative';
+        mediaBox.innerHTML = `
+          <img src="${thumbUrl}" alt="썸네일" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);">
+            <a href="${youtubeUrl}" target="_blank"
+               style="display:inline-flex;align-items:center;gap:8px;background:#FF0000;color:#fff;text-decoration:none;padding:12px 24px;border-radius:8px;font-weight:600;font-size:0.95rem;font-family:Inter,sans-serif;">
+              ▶ YouTube에서 보기
+            </a>
+          </div>
+        `;
       } else if (localVideo) {
         const vid = document.createElement('video');
         vid.src = localVideo;
