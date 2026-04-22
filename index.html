@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>나의 포트폴리오</title>
+  <title>My Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
@@ -72,74 +72,59 @@
       justify-content: center;
     }
 
-    .hero-preview-video video {
+    .hero-preview-video a {
+      display: block;
       width: 40%;
       max-width: 720px;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .hero-preview-video video {
+      width: 100%;
       aspect-ratio: 16 / 9;
       border-radius: 12px;
       object-fit: cover;
-      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
-      pointer-events: none;
-    }
-
-    /* CTA Cards */
-    .cta-cards {
-      background: #fff;
-      padding: 40px 0;
-    }
-
-    .cta-cards .inner {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-    }
-
-    .cta-card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      padding: 24px;
-      text-decoration: none;
-      color: inherit;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .cta-card:hover {
-      transform: translateY(-6px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      display: block;
+      pointer-events: none;
+      transition: opacity 0.3s;
     }
 
-    .cta-card .icon {
-      font-size: 2.5rem;
-      background: #FFEBE8;
-      width: 60px;
-      height: 60px;
-      line-height: 60px;
-      border-radius: 50%;
-      margin-bottom: 12px;
+    .hero-preview-video a:hover video {
+      opacity: 0.85;
     }
 
-    .cta-card.portfolio .icon { background: #E8F6FF; }
-
-    .cta-card h3 {
-      font-size: 1.25rem;
-      margin: 8px 0;
-      color: #333;
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
     }
 
-    .cta-card p {
-      font-size: 0.95rem;
-      color: #666;
-      line-height: 1.5;
+    .hero-preview-video a:hover .video-overlay {
+      opacity: 1;
+    }
+
+    .video-overlay span {
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 24px;
+      letter-spacing: 0.03em;
     }
 
     #contact-info .inner {
       text-align: center;
       padding: 40px 20px;
+      color: #666;
     }
 
     footer {
@@ -153,10 +138,9 @@
 <body>
   <header>
     <div class="inner">
-      <h1><a href="index.html" class="site-logo">My Portfolio</a></h1>
+      <h1><a href="index.html" class="site-logo" style="text-decoration:none; color:#111;">My Portfolio</a></h1>
       <nav>
         <ul>
-          <li><a href="about.html">About</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
         </ul>
       </nav>
@@ -166,26 +150,17 @@
   <!-- Hero Section -->
   <section id="hero">
     <div class="inner">
-      <h2>나의 포트폴리오<br></h2>
+      <h2>My Portfolio</h2>
       <p class="hero-subtitle">안녕하세요! 경성대학교 미디어콘텐츠학과에 재학 중인 정민주입니다⭐️<br>
       저에 대해서 여러분들에게 소개합니다</p>
       <div class="hero-preview-video">
-        <video src="preview.mp4" autoplay muted loop playsinline></video>
+        <a href="portfolio.html">
+          <video src="preview.mp4" autoplay muted loop playsinline></video>
+          <div class="video-overlay">
+            <span>📁 포트폴리오 보기</span>
+          </div>
+        </a>
       </div>
-    </div>
-  </section>
-
-  <!-- CTA Cards -->
-  <section class="cta-cards">
-    <div class="inner">
-      <a href="about.html" class="cta-card">
-        <div class="icon">👋</div>
-        <h3>About</h3>
-      </a>
-      <a href="portfolio.html" class="cta-card portfolio">
-        <div class="icon">📁</div>
-        <h3>Portfolio</h3>
-      </a>
     </div>
   </section>
 
